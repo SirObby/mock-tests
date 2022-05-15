@@ -1,0 +1,22 @@
+* {
+    font-family: 'Times New Roman'/*, Times, serif*/;
+}
+h1 {
+    font: 40px 'Verdana'
+}
+.question_title {
+    font: 15px 'Verdana'
+}
+.choice_btn {
+    border: 0;
+    background-color: transparent;
+    font: 13px 'Verdana'
+}
+.choice_btn:hover {
+    background-color: lightgray;
+    /*
+    Make it round
+    */
+    border-radius: 5px;
+    
+}
