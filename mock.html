@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock test application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Mock test application</h1>
+    <textarea id="input" rows="10" cols="50" placeholder="Insert test data information here."></textarea>
+    <br>
+    <button id="start-btn" onclick="start()">Start mock</button>
+    <div id="exam-area">
+            
+    </div>
+    <button id="check_answers" onclick="javascript:submit();" disabled>Check answers.</button>
+    <button id="submit_answers" onclick="javascript:send();" disabled>Submit answers.</button> <span data-toggle='tooltip' title='This will email the teacher with your answers.'>?</span>
+
+    <div id="mark_count">
+
+    </div>
+
+</body>
+<script src="gen.js"></script>
+</html>
