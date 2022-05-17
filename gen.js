@@ -1,11 +1,19 @@
 let found_body = {};
 
-function generate_page() {
+let yo = false;
+
+function generate_page(x) {
+    let ok = "";
+    if (x == "yes") {
+        ok = `<textarea id="input" rows="10" cols="50" placeholder="Insert test data information here."></textarea>
+<br>`
+        yo = true;
+    }
     /*
-    <textarea id="input" rows="10" cols="50" placeholder="Insert test data information here."></textarea>
-    <br>
+    
     */
     document.getElementById("entire-page").innerHTML = `
+    ${ok}
     <button id="start-btn" onclick="start()">Start mock</button>
     <div id="exam-area">
 
@@ -39,13 +47,16 @@ function get_mock() {
         .then(data => {
             console.log(data);
             found_body = data;
-            
+
             setTimeout(() => {
-                generate_page();
+                generate_page("no");
             }, 100);
             //
         })
-        .catch(error => { console.error(error); console.log(response)});
+        .catch(error => {
+            console.error(error);
+            console.log(response)
+        });
 
 }
 
@@ -65,8 +76,12 @@ let marks_achieved = 0;
 let q = 0; // How many questions?
 
 function start() {
-    let code = /*document.getElementById("input").value*/found_body.body.toString();
-
+    let code = "";
+    if (yo == false) code = /*document.getElementById("input").value*/ found_body.body.toString();
+    else {
+        code = atob(document.getElementById("input").value);
+        document.getElementById("input").remove();
+    }
     console.log(code);
 
     // Parse code into a JSON object

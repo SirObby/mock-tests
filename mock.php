@@ -12,9 +12,11 @@
 <body>
     <h1>Mock test application</h1>
     <div id="entire-page">
-        <input type="text" name="id" id="id" placeholder="000-000">
+        <input type="text" name="id" id="id" placeholder="000-000"> 000-001
         <br>
         <button id="enter mock exam" onclick="get_mock()">Get mock</button>
+        <br>
+        <button onclicK='generate_page("yes");'>I have a code.</button>
     </div>
 
 </body>
