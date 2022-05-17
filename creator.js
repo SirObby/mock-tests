@@ -3,7 +3,13 @@ var q_index = 0;
 let generated_code = {
     "subject": "generated test",
     "description": "generated exam.",
-    "flags": "nosubmit",
+    "submit": false, 
+    "submit_info": {
+        "email": "",
+        "rules": [
+            // strings with what emails that are ending in can submit.
+        ]
+    },
     "questions": []
 }
 
@@ -69,6 +75,11 @@ function generate() {
 
     }
 
+    generated_code.subject = document.getElementById("sub").value
+    generated_code.description = document.getElementById("desc").value
+    generated_code.submit = document.getElementById("submit").checked
+    generated_code.submit_info.email = document.getElementById("allow_email").value
+    generated_code.submit_info.rules = document.getElementById("email").value.split(",")
     
     document.getElementById("out").value = btoa(JSON.stringify(generated_code));
 }

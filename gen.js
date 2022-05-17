@@ -1,3 +1,21 @@
+let answered = {
+
+}
+let correct_answers = {
+
+}
+
+let timer = 0;
+let timer_enabled = false; 
+
+let marks_awarded = 0;
+let marks_achieved = 0;
+
+let q = 0; // How many questions?
+
+document.getElementById("check_answers").disabled = true;
+document.getElementById("submit_answers").disabled = true;
+
 function start() {
     let code = atob(document.getElementById("input").value);
 
@@ -23,12 +41,26 @@ function start() {
             
             console.log(element.text);
             choices += `<button class="choice_btn" onclick="select_choice(${index}, ${indexy})"><b>${indexy + 1}.</b> <input type="checkbox" id="c-${index}-${indexy}" tabindex="-1"> ${elementt.text}</button><br>`
+        
+            if(elementt.correct == true) {
+                correct_answers[index] = indexy;
+            }
         }
 
-        result += `<div class='question'> <span class="question_title">${element.question}</span><br>${choices}<b>[ ${element.marks_awarded} ]</b><br><br></div>`;
+        marks_awarded += element.marks_awarded;
+
+        result += `<div class='question'> <span class="question_title">${element.question}</span><br>${choices}<b>[ ${element.marks_awarded} ]</b>  <span id="${index}-corr"></span> <br><br></div>`;
+        q++;
     }
 
     document.getElementById("exam-area").innerHTML = result;
+
+    document.getElementById("check_answers").disabled = false;
+    //document.getElementById("check_answers").onclick = "javascript:submit();"
+    if(parsed.submit) {
+        document.getElementById("submit_answers").disabled = false;
+        //document.getElementById("submit_answers").onclick = "javascript:send();"
+    }
 }
 /**
  * 
@@ -47,4 +79,21 @@ function select_choice(q, c) {
     }
     checkbox.checked = true;
     
+    answered[q] = c;
+}
+
+function submit() {
+    for (let index = 0; index < q; index++) {
+        if(answered[index] == correct_answers[index]) {
+            marks_achieved++;
+            document.getElementById(`${index}-corr`).innerHTML = "Correct";
+        } else {
+            document.getElementById(`${index}-corr`).innerHTML = `Incorrect, the answer is ${correct_answers[index] + 1}`;
+        }
+    }
+
+    document.getElementById("mark_count").innerHTML = `You achived ${marks_achieved} out of ${marks_awarded} marks.`;
+}
+function send() {
+    let body = ``;
 }
